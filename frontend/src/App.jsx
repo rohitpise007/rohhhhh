@@ -1,92 +1,61 @@
-// src/App.jsx
-import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-
-import Header from "./components/Header";
-
-import Home from "./Routes/Home";
-import SymptomForm from "./components/SymptomForm";
-import SymptomChecker from "./Routes/SymptomChecker";
-
-import Register from "./Routes/Register";
-import Login from "./Routes/Login";
-
-import DoctorsList from "./Routes/DoctorsList";
-
-import PatientDashboard from "./Routes/PatientDashboard";
-import DoctorDashboard from "./Routes/DoctorDashboard";
-import BookAppointment from "./Routes/BookAppointment";
-
-
-// ---- Protected Route ----
-function PrivateRoute({ children, role }) {
-  let user = null;
-
-  try {
-    user = JSON.parse(localStorage.getItem("user"));
-  } catch {
-    user = null;
-  }
-
-  if (!user) return <Navigate to="/login" replace />;
-
-  if (role && user.role !== role && user.role !== "admin") {
-    return <Navigate to="/" replace />;
-  }
-
-  return children;
-}
+import React, { useContext, useEffect } from "react";
+import "./App.css";
+import { createRoot } from 'react-dom/client'
+import Home from "./Pages/Home";
+import Appointment from "./Pages/Appointment";
+import DoctorAppointments from "./Pages/DoctorAppointments";
+import AboutUs from "./Pages/AboutUs";
+import Register from "./Pages/Register";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
+import { Context } from "./main";
+import Login from "./Pages/Login";
+const App = () => {
+  const ProtectedRoute = ({ children }) => {
+  const { isAuthenticated } = useContext(Context);
+  return isAuthenticated ? children : <Navigate to="/login" />;
+};
 
 
-// ---- Main App Component ----
-export default function App() {
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/Plogin",
+          {
+            withCredentials: true,
+          }
+        );
+        setIsAuthenticated(true);
+        setUser(response.data.user);
+      } catch (error) {
+        setIsAuthenticated(false);
+        setUser({});
+      }
+    };
+    fetchUser();
+  }, [isAuthenticated]);
+
   return (
-    <div className="min-h-screen bg-gray-100">
-      <Header />
-
-      <Routes>
-
-        {/* Public Routes */}
-        <Route path="/" element={<Home />} />
-        <Route path="/symptom" element={<SymptomForm />} />
-        <Route path="/symptom-checker" element={<SymptomChecker />} />
-
-        <Route path="/doctors" element={<DoctorsList />} />
-
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-
-        {/* Patient Dashboard */}
-        <Route
-          path="/patient"
-          element={
-            <PrivateRoute role="patient">
-              <PatientDashboard />
-            </PrivateRoute>
-          }
-        />
-
-        {/* Doctor Dashboard */}
-        <Route
-          path="/doctor"
-          element={
-            <PrivateRoute role="doctor">
-              <DoctorDashboard />
-            </PrivateRoute>
-          }
-        />
-
-        {/* Book Appointment */}
-        <Route
-          path="/book"
-          element={
-            <PrivateRoute role="patient">
-              <BookAppointment />
-            </PrivateRoute>
-          }
-        />
-
-      </Routes>
-    </div>
+    <>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/appointment" element={<ProtectedRoute><Appointment /></ProtectedRoute>} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/Viewall-appointment" element={<DoctorAppointments />} />
+        </Routes>
+        <Footer />
+        <ToastContainer position="top-center" />
+      </Router>
+    </>
   );
-}
+};
+
+export default App;
