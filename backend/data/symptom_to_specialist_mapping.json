@@ -1,0 +1,634 @@
+[
+  {
+    "disease": "Common Cold",
+    "example_symptoms": "fever,cough,sore throat,runny nose",
+    "symptom_tokens": [
+      "fever",
+      "cough",
+      "sore throat",
+      "runny nose"
+    ],
+    "recommended_specialist": "General Physician"
+  },
+  {
+    "disease": "Influenza",
+    "example_symptoms": "fever,high fever,body ache,headache,chills",
+    "symptom_tokens": [
+      "fever",
+      "high fever",
+      "body ache",
+      "headache",
+      "chills"
+    ],
+    "recommended_specialist": "General Physician"
+  },
+  {
+    "disease": "Pneumonia",
+    "example_symptoms": "fever,cough,shortness of breath,chest pain",
+    "symptom_tokens": [
+      "fever",
+      "cough",
+      "shortness of breath",
+      "chest pain"
+    ],
+    "recommended_specialist": "Pulmonologist"
+  },
+  {
+    "disease": "Asthma",
+    "example_symptoms": "wheezing,shortness of breath,chest tightness,cough",
+    "symptom_tokens": [
+      "wheezing",
+      "shortness of breath",
+      "chest tightness",
+      "cough"
+    ],
+    "recommended_specialist": "Pulmonologist"
+  },
+  {
+    "disease": "Chronic Bronchitis",
+    "example_symptoms": "persistent cough,production of sputum,breathlessness",
+    "symptom_tokens": [
+      "persistent cough",
+      "production of sputum",
+      "breathlessness"
+    ],
+    "recommended_specialist": "Pulmonologist"
+  },
+  {
+    "disease": "GERD",
+    "example_symptoms": "burning chest pain,acid reflux,regurgitation",
+    "symptom_tokens": [
+      "burning chest pain",
+      "acid reflux",
+      "regurgitation"
+    ],
+    "recommended_specialist": "Gastroenterologist"
+  },
+  {
+    "disease": "Appendicitis",
+    "example_symptoms": "abdominal pain,nausea,vomiting,loss of appetite,fever",
+    "symptom_tokens": [
+      "abdominal pain",
+      "nausea",
+      "vomiting",
+      "loss of appetite",
+      "fever"
+    ],
+    "recommended_specialist": "General Surgeon"
+  },
+  {
+    "disease": "Gastritis",
+    "example_symptoms": "upper abdominal pain,bloating,nausea,heartburn",
+    "symptom_tokens": [
+      "upper abdominal pain",
+      "bloating",
+      "nausea",
+      "heartburn"
+    ],
+    "recommended_specialist": "Gastroenterologist"
+  },
+  {
+    "disease": "Urinary Tract Infection",
+    "example_symptoms": "frequent urination,burning urination,lower abdominal pain",
+    "symptom_tokens": [
+      "frequent urination",
+      "burning urination",
+      "lower abdominal pain"
+    ],
+    "recommended_specialist": "Urologist"
+  },
+  {
+    "disease": "Pyelonephritis",
+    "example_symptoms": "fever,back pain,nausea,frequent urination",
+    "symptom_tokens": [
+      "fever",
+      "back pain",
+      "nausea",
+      "frequent urination"
+    ],
+    "recommended_specialist": "Nephrologist"
+  },
+  {
+    "disease": "Migraine",
+    "example_symptoms": "headache,nausea,vomiting,photophobia,phonophobia",
+    "symptom_tokens": [
+      "headache",
+      "nausea",
+      "vomiting",
+      "photophobia",
+      "phonophobia"
+    ],
+    "recommended_specialist": "Neurologist"
+  },
+  {
+    "disease": "Meningitis",
+    "example_symptoms": "headache,neck stiffness,fever,confusion",
+    "symptom_tokens": [
+      "headache",
+      "neck stiffness",
+      "fever",
+      "confusion"
+    ],
+    "recommended_specialist": "Neurologist"
+  },
+  {
+    "disease": "Acute Coronary Syndrome",
+    "example_symptoms": "rapid heartbeat,chest pain,dizziness,sweating",
+    "symptom_tokens": [
+      "rapid heartbeat",
+      "chest pain",
+      "dizziness",
+      "sweating"
+    ],
+    "recommended_specialist": "Cardiologist"
+  },
+  {
+    "disease": "Heart Failure",
+    "example_symptoms": "chest pain,shortness of breath,leg swelling",
+    "symptom_tokens": [
+      "chest pain",
+      "shortness of breath",
+      "leg swelling"
+    ],
+    "recommended_specialist": "Cardiologist"
+  },
+  {
+    "disease": "Rheumatoid Arthritis",
+    "example_symptoms": "joint pain,swelling,stiffness,morning stiffness",
+    "symptom_tokens": [
+      "joint pain",
+      "swelling",
+      "stiffness",
+      "morning stiffness"
+    ],
+    "recommended_specialist": "Rheumatologist"
+  },
+  {
+    "disease": "Lumbar Disc Herniation",
+    "example_symptoms": "back pain,leg pain,numbness in leg",
+    "symptom_tokens": [
+      "back pain",
+      "leg pain",
+      "numbness in leg"
+    ],
+    "recommended_specialist": "Orthopedic Surgeon"
+  },
+  {
+    "disease": "Stroke",
+    "example_symptoms": "sudden weakness on one side,slurred speech,facial droop",
+    "symptom_tokens": [
+      "sudden weakness on one side",
+      "slurred speech",
+      "facial droop"
+    ],
+    "recommended_specialist": "Neurologist"
+  },
+  {
+    "disease": "Type 2 Diabetes",
+    "example_symptoms": "frequent urination,excessive thirst,blurred vision,weight loss",
+    "symptom_tokens": [
+      "frequent urination",
+      "excessive thirst",
+      "blurred vision",
+      "weight loss"
+    ],
+    "recommended_specialist": "Endocrinologist"
+  },
+  {
+    "disease": "Hypothyroidism",
+    "example_symptoms": "fatigue,weight gain,cold intolerance,constipation",
+    "symptom_tokens": [
+      "fatigue",
+      "weight gain",
+      "cold intolerance",
+      "constipation"
+    ],
+    "recommended_specialist": "Endocrinologist"
+  },
+  {
+    "disease": "Tonsillitis",
+    "example_symptoms": "sore throat,fever,swollen lymph nodes,white patches on tonsils",
+    "symptom_tokens": [
+      "sore throat",
+      "fever",
+      "swollen lymph nodes",
+      "white patches on tonsils"
+    ],
+    "recommended_specialist": "ENT Specialist"
+  },
+  {
+    "disease": "Otitis Media",
+    "example_symptoms": "ear pain,fever,hearing difficulty,ear discharge",
+    "symptom_tokens": [
+      "ear pain",
+      "fever",
+      "hearing difficulty",
+      "ear discharge"
+    ],
+    "recommended_specialist": "ENT Specialist"
+  },
+  {
+    "disease": "Benign Paroxysmal Positional Vertigo",
+    "example_symptoms": "dizziness,vertigo,nausea,loss of balance",
+    "symptom_tokens": [
+      "dizziness",
+      "vertigo",
+      "nausea",
+      "loss of balance"
+    ],
+    "recommended_specialist": "ENT Specialist"
+  },
+  {
+    "disease": "Eczema",
+    "example_symptoms": "rash,itching,red patches,scaly skin",
+    "symptom_tokens": [
+      "rash",
+      "itching",
+      "red patches",
+      "scaly skin"
+    ],
+    "recommended_specialist": "Dermatologist"
+  },
+  {
+    "disease": "Suspicious Skin Lesion",
+    "example_symptoms": "new mole,irregular border,color change,bleeding",
+    "symptom_tokens": [
+      "new mole",
+      "irregular border",
+      "color change",
+      "bleeding"
+    ],
+    "recommended_specialist": "Dermatologist"
+  },
+  {
+    "disease": "Alzheimer's Disease",
+    "example_symptoms": "memory loss,confusion,difficulty performing familiar tasks",
+    "symptom_tokens": [
+      "memory loss",
+      "confusion",
+      "difficulty performing familiar tasks"
+    ],
+    "recommended_specialist": "Neurologist"
+  },
+  {
+    "disease": "Infectious Mononucleosis",
+    "example_symptoms": "fever,sore throat,fatigue,swollen lymph nodes",
+    "symptom_tokens": [
+      "fever",
+      "sore throat",
+      "fatigue",
+      "swollen lymph nodes"
+    ],
+    "recommended_specialist": "General Physician"
+  },
+  {
+    "disease": "Inflammatory Bowel Disease",
+    "example_symptoms": "abdominal pain,diarrhea,blood in stool,weight loss",
+    "symptom_tokens": [
+      "abdominal pain",
+      "diarrhea",
+      "blood in stool",
+      "weight loss"
+    ],
+    "recommended_specialist": "Gastroenterologist"
+  },
+  {
+    "disease": "Peptic Ulcer Disease",
+    "example_symptoms": "upper abdominal pain,black stools,low hemoglobin",
+    "symptom_tokens": [
+      "upper abdominal pain",
+      "black stools",
+      "low hemoglobin"
+    ],
+    "recommended_specialist": "Gastroenterologist"
+  },
+  {
+    "disease": "Breast Lump (needs evaluation)",
+    "example_symptoms": "breast lump,pain,skin change,nipple discharge",
+    "symptom_tokens": [
+      "breast lump",
+      "pain",
+      "skin change",
+      "nipple discharge"
+    ],
+    "recommended_specialist": "Breast Surgeon"
+  },
+  {
+    "disease": "COVID-19",
+    "example_symptoms": "mild fever,cough,loss of smell,taste",
+    "symptom_tokens": [
+      "mild fever",
+      "cough",
+      "loss of smell",
+      "taste"
+    ],
+    "recommended_specialist": "Infectious Disease Specialist"
+  },
+  {
+    "disease": "Polycystic Ovary Syndrome",
+    "example_symptoms": "irregular periods,weight gain,hirsutism,acne",
+    "symptom_tokens": [
+      "irregular periods",
+      "weight gain",
+      "hirsutism",
+      "acne"
+    ],
+    "recommended_specialist": "Gynecologist"
+  },
+  {
+    "disease": "Sexually Transmitted Infection",
+    "example_symptoms": "painful urination,penile discharge,genital sores",
+    "symptom_tokens": [
+      "painful urination",
+      "penile discharge",
+      "genital sores"
+    ],
+    "recommended_specialist": "Dermatologist/Venereologist"
+  },
+  {
+    "disease": "Ruptured Ectopic Pregnancy",
+    "example_symptoms": "sudden severe abdominal pain,shoulder pain,low blood pressure",
+    "symptom_tokens": [
+      "sudden severe abdominal pain",
+      "shoulder pain",
+      "low blood pressure"
+    ],
+    "recommended_specialist": "Gynecologist"
+  },
+  {
+    "disease": "Dengue Fever",
+    "example_symptoms": "fever,body ache,rash,onset after travel",
+    "symptom_tokens": [
+      "fever",
+      "body ache",
+      "rash",
+      "onset after travel"
+    ],
+    "recommended_specialist": "Infectious Disease Specialist"
+  },
+  {
+    "disease": "COPD",
+    "example_symptoms": "gradual breathlessness,smoking history,productive cough",
+    "symptom_tokens": [
+      "gradual breathlessness",
+      "smoking history",
+      "productive cough"
+    ],
+    "recommended_specialist": "Pulmonologist"
+  },
+  {
+    "disease": "Parkinson's Disease",
+    "example_symptoms": "tremor,slowness of movement,rigidity,postural instability",
+    "symptom_tokens": [
+      "tremor",
+      "slowness of movement",
+      "rigidity",
+      "postural instability"
+    ],
+    "recommended_specialist": "Neurologist"
+  },
+  {
+    "disease": "Peritonsillar Abscess",
+    "example_symptoms": "severe sore throat,difficulty breathing,hoarseness",
+    "symptom_tokens": [
+      "severe sore throat",
+      "difficulty breathing",
+      "hoarseness"
+    ],
+    "recommended_specialist": "ENT Specialist"
+  },
+  {
+    "disease": "Intracranial Hypertension",
+    "example_symptoms": "frequent headaches,visual disturbances,pulsatile tinnitus",
+    "symptom_tokens": [
+      "frequent headaches",
+      "visual disturbances",
+      "pulsatile tinnitus"
+    ],
+    "recommended_specialist": "Neurologist"
+  },
+  {
+    "disease": "Angina",
+    "example_symptoms": "chest discomfort,fatigue,exertional breathlessness",
+    "symptom_tokens": [
+      "chest discomfort",
+      "fatigue",
+      "exertional breathlessness"
+    ],
+    "recommended_specialist": "Cardiologist"
+  },
+  {
+    "disease": "Lymphoma",
+    "example_symptoms": "night sweats,weight loss,fever,enlarged lymph nodes",
+    "symptom_tokens": [
+      "night sweats",
+      "weight loss",
+      "fever",
+      "enlarged lymph nodes"
+    ],
+    "recommended_specialist": "Oncologist"
+  },
+  {
+    "disease": "Meningitis",
+    "example_symptoms": "sudden high fever,stiff neck,photophobia",
+    "symptom_tokens": [
+      "sudden high fever",
+      "stiff neck",
+      "photophobia"
+    ],
+    "recommended_specialist": "Neurologist"
+  },
+  {
+    "disease": "Multiple Myeloma",
+    "example_symptoms": "bone pain,fractures,high calcium levels",
+    "symptom_tokens": [
+      "bone pain",
+      "fractures",
+      "high calcium levels"
+    ],
+    "recommended_specialist": "Oncologist"
+  },
+  {
+    "disease": "Esophageal Cancer",
+    "example_symptoms": "difficulty swallowing,chest pain,weight loss",
+    "symptom_tokens": [
+      "difficulty swallowing",
+      "chest pain",
+      "weight loss"
+    ],
+    "recommended_specialist": "Oncologist"
+  },
+  {
+    "disease": "Pelvic Inflammatory Disease",
+    "example_symptoms": "pain during intercourse,lower abdominal pain,abnormal bleeding",
+    "symptom_tokens": [
+      "pain during intercourse",
+      "lower abdominal pain",
+      "abnormal bleeding"
+    ],
+    "recommended_specialist": "Gynecologist"
+  },
+  {
+    "disease": "Hepatitis",
+    "example_symptoms": "fatigue,itching,yellowing of eyes and skin",
+    "symptom_tokens": [
+      "fatigue",
+      "itching",
+      "yellowing of eyes and skin"
+    ],
+    "recommended_specialist": "Hepatologist/Gastroenterologist"
+  },
+  {
+    "disease": "Acne Vulgaris",
+    "example_symptoms": "acne,oily skin,scarring",
+    "symptom_tokens": [
+      "acne",
+      "oily skin",
+      "scarring"
+    ],
+    "recommended_specialist": "Dermatologist"
+  },
+  {
+    "disease": "Tuberculosis",
+    "example_symptoms": "persistent fever,weight loss,cough lasting >3 weeks",
+    "symptom_tokens": [
+      "persistent fever",
+      "weight loss",
+      "cough lasting >3 weeks"
+    ],
+    "recommended_specialist": "Pulmonologist/Infectious Disease"
+  },
+  {
+    "disease": "Deep Vein Thrombosis",
+    "example_symptoms": "leg pain,calf swelling,redness after long travel",
+    "symptom_tokens": [
+      "leg pain",
+      "calf swelling",
+      "redness after long travel"
+    ],
+    "recommended_specialist": "Vascular Surgeon"
+  },
+  {
+    "disease": "Benign Prostatic Hyperplasia",
+    "example_symptoms": "frequent urination,erectile dysfunction,lower urinary tract symptoms",
+    "symptom_tokens": [
+      "frequent urination",
+      "erectile dysfunction",
+      "lower urinary tract symptoms"
+    ],
+    "recommended_specialist": "Urologist"
+  },
+  {
+    "disease": "Atrial Fibrillation",
+    "example_symptoms": "irregular heartbeat,palpitations,shortness of breath",
+    "symptom_tokens": [
+      "irregular heartbeat",
+      "palpitations",
+      "shortness of breath"
+    ],
+    "recommended_specialist": "Cardiologist"
+  },
+  {
+    "disease": "Laryngeal Cancer",
+    "example_symptoms": "persistent cough,hoarseness,weight loss,smoking history",
+    "symptom_tokens": [
+      "persistent cough",
+      "hoarseness",
+      "weight loss",
+      "smoking history"
+    ],
+    "recommended_specialist": "ENT/Oncologist"
+  },
+  {
+    "disease": "Chikungunya",
+    "example_symptoms": "fever,headache,rash,joint pain after mosquito bite",
+    "symptom_tokens": [
+      "fever",
+      "headache",
+      "rash",
+      "joint pain after mosquito bite"
+    ],
+    "recommended_specialist": "Infectious Disease Specialist"
+  },
+  {
+    "disease": "Peripheral Arterial Disease",
+    "example_symptoms": "difficulty walking,leg weakness,pain in calf on walking",
+    "symptom_tokens": [
+      "difficulty walking",
+      "leg weakness",
+      "pain in calf on walking"
+    ],
+    "recommended_specialist": "Vascular Surgeon"
+  },
+  {
+    "disease": "Depression",
+    "example_symptoms": "frequent mood swings,insomnia,low mood",
+    "symptom_tokens": [
+      "frequent mood swings",
+      "insomnia",
+      "low mood"
+    ],
+    "recommended_specialist": "Psychiatrist"
+  },
+  {
+    "disease": "Intestinal Obstruction",
+    "example_symptoms": "sudden severe abdominal pain,distension,vomiting,no bowel movement",
+    "symptom_tokens": [
+      "sudden severe abdominal pain",
+      "distension",
+      "vomiting",
+      "no bowel movement"
+    ],
+    "recommended_specialist": "General Surgeon"
+  },
+  {
+    "disease": "Fibroadenoma / Benign Breast Disease",
+    "example_symptoms": "breast pain,lump increased with cycle",
+    "symptom_tokens": [
+      "breast pain",
+      "lump increased with cycle"
+    ],
+    "recommended_specialist": "Breast Surgeon"
+  },
+  {
+    "disease": "Iron Deficiency Anemia",
+    "example_symptoms": "weakness,fatigue,pale skin,low hemoglobin",
+    "symptom_tokens": [
+      "weakness",
+      "fatigue",
+      "pale skin",
+      "low hemoglobin"
+    ],
+    "recommended_specialist": "Hematologist"
+  },
+  {
+    "disease": "Urinary Tract Infection",
+    "example_symptoms": "frequent urination,lower abdominal pain,fever after sexual activity",
+    "symptom_tokens": [
+      "frequent urination",
+      "lower abdominal pain",
+      "fever after sexual activity"
+    ],
+    "recommended_specialist": "Urologist"
+  },
+  {
+    "disease": "Cholecystitis / Gallstones",
+    "example_symptoms": "upper right abdominal pain,fever,jaundice",
+    "symptom_tokens": [
+      "upper right abdominal pain",
+      "fever",
+      "jaundice"
+    ],
+    "recommended_specialist": "General Surgeon"
+  },
+  {
+    "disease": "Chronic Heart Failure",
+    "example_symptoms": "progressive shortness of breath,edema,orthopnea",
+    "symptom_tokens": [
+      "progressive shortness of breath",
+      "edema",
+      "orthopnea"
+    ],
+    "recommended_specialist": "Cardiologist"
+  }
+]

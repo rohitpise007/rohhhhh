@@ -1,0 +1,61 @@
+patient_id,age,gender,symptoms,disease,recommended_specialist,severity
+1,25,F,"fever,cough,sore throat,runny nose",Common Cold,General Physician,mild
+2,30,M,"fever,high fever,body ache,headache,chills",Influenza,General Physician,moderate
+3,65,M,"fever,cough,shortness of breath,chest pain",Pneumonia,Pulmonologist,severe
+4,40,F,"wheezing,shortness of breath,chest tightness,cough",Asthma,Pulmonologist,moderate
+5,55,M,"persistent cough,production of sputum,breathlessness",Chronic Bronchitis,Pulmonologist,moderate
+6,28,F,"burning chest pain,acid reflux,regurgitation",GERD,Gastroenterologist,mild
+7,22,M,"abdominal pain,nausea,vomiting,loss of appetite,fever",Appendicitis,General Surgeon,severe
+8,45,F,"upper abdominal pain,bloating,nausea,heartburn",Gastritis,Gastroenterologist,mild
+9,60,F,"frequent urination,burning urination,lower abdominal pain",Urinary Tract Infection,Urologist,moderate
+10,70,M,"fever,back pain,nausea,frequent urination",Pyelonephritis,Nephrologist,severe
+11,35,F,"headache,nausea,vomiting,photophobia,phonophobia",Migraine,Neurologist,moderate
+12,50,M,"headache,neck stiffness,fever,confusion",Meningitis,Neurologist,severe
+13,48,F,"rapid heartbeat,chest pain,dizziness,sweating",Acute Coronary Syndrome,Cardiologist,severe
+14,58,M,"chest pain,shortness of breath,leg swelling",Heart Failure,Cardiologist,severe
+15,33,F,"joint pain,swelling,stiffness,morning stiffness",Rheumatoid Arthritis,Rheumatologist,moderate
+16,27,M,"back pain,leg pain,numbness in leg",Lumbar Disc Herniation,Orthopedic Surgeon,moderate
+17,72,F,"sudden weakness on one side,slurred speech,facial droop",Stroke,Neurologist,severe
+18,46,M,"frequent urination,excessive thirst,blurred vision,weight loss",Type 2 Diabetes,Endocrinologist,moderate
+19,39,F,"fatigue,weight gain,cold intolerance,constipation",Hypothyroidism,Endocrinologist,mild
+20,29,M,"sore throat,fever,swollen lymph nodes,white patches on tonsils",Tonsillitis,ENT Specialist,moderate
+21,52,F,"ear pain,fever,hearing difficulty,ear discharge",Otitis Media,ENT Specialist,moderate
+22,24,M,"dizziness,vertigo,nausea,loss of balance",Benign Paroxysmal Positional Vertigo,ENT Specialist,mild
+23,31,F,"rash,itching,red patches,scaly skin",Eczema,Dermatologist,mild
+24,44,M,"new mole,irregular border,color change,bleeding",Suspicious Skin Lesion,Dermatologist,severe
+25,66,F,"memory loss,confusion,difficulty performing familiar tasks",Alzheimer's Disease,Neurologist,severe
+26,21,M,"fever,sore throat,fatigue,swollen lymph nodes",Infectious Mononucleosis,General Physician,moderate
+27,37,F,"abdominal pain,diarrhea,blood in stool,weight loss",Inflammatory Bowel Disease,Gastroenterologist,severe
+28,42,M,"upper abdominal pain,black stools,low hemoglobin",Peptic Ulcer Disease,Gastroenterologist,moderate
+29,34,F,"breast lump,pain,skin change,nipple discharge",Breast Lump (needs evaluation),Breast Surgeon,severe
+30,49,M,"mild fever,cough,loss of smell,taste",COVID-19,Infectious Disease Specialist,moderate
+31,26,F,"irregular periods,weight gain,hirsutism,acne",Polycystic Ovary Syndrome,Gynecologist,moderate
+32,31,M,"painful urination,penile discharge,genital sores",Sexually Transmitted Infection,Dermatologist/Venereologist,moderate
+33,57,F,"sudden severe abdominal pain,shoulder pain,low blood pressure",Ruptured Ectopic Pregnancy,Gynecologist,severe
+34,18,F,"fever,body ache,rash,onset after travel",Dengue Fever,Infectious Disease Specialist,moderate
+35,62,M,"gradual breathlessness,smoking history,productive cough",COPD,Pulmonologist,moderate
+36,53,F,"tremor,slowness of movement,rigidity,postural instability",Parkinson's Disease,Neurologist,severe
+37,29,M,"severe sore throat,difficulty breathing,hoarseness",Peritonsillar Abscess,ENT Specialist,severe
+38,41,F,"frequent headaches,visual disturbances,pulsatile tinnitus",Intracranial Hypertension,Neurologist,moderate
+39,47,M,"chest discomfort,fatigue,exertional breathlessness",Angina,Cardiologist,moderate
+40,36,F,"night sweats,weight loss,fever,enlarged lymph nodes",Lymphoma,Oncologist,severe
+41,23,M,"sudden high fever,stiff neck,photophobia",Meningitis,Neurologist,severe
+42,68,F,"bone pain,fractures,high calcium levels",Multiple Myeloma,Oncologist,severe
+43,54,M,"difficulty swallowing,chest pain,weight loss",Esophageal Cancer,Oncologist,severe
+44,32,F,"pain during intercourse,lower abdominal pain,abnormal bleeding",Pelvic Inflammatory Disease,Gynecologist,moderate
+45,59,M,"fatigue,itching,yellowing of eyes and skin",Hepatitis,Hepatologist/Gastroenterologist,moderate
+46,20,F,"acne,oily skin,scarring",Acne Vulgaris,Dermatologist,mild
+47,38,M,"persistent fever,weight loss,cough lasting >3 weeks",Tuberculosis,Pulmonologist/Infectious Disease,severe
+48,43,F,"leg pain,calf swelling,redness after long travel",Deep Vein Thrombosis,Vascular Surgeon,severe
+49,51,M,"frequent urination,erectile dysfunction,lower urinary tract symptoms",Benign Prostatic Hyperplasia,Urologist,moderate
+50,28,F,"irregular heartbeat,palpitations,shortness of breath",Atrial Fibrillation,Cardiologist,moderate
+51,45,M,"persistent cough,hoarseness,weight loss,smoking history",Laryngeal Cancer,ENT/Oncologist,severe
+52,19,F,"fever,headache,rash,joint pain after mosquito bite",Chikungunya,Infectious Disease Specialist,moderate
+53,67,M,"difficulty walking,leg weakness,pain in calf on walking",Peripheral Arterial Disease,Vascular Surgeon,moderate
+54,29,F,"frequent mood swings,insomnia,low mood",Depression,Psychiatrist,moderate
+55,34,M,"sudden severe abdominal pain,distension,vomiting,no bowel movement",Intestinal Obstruction,General Surgeon,severe
+56,48,F,"breast pain,lump increased with cycle",Fibroadenoma / Benign Breast Disease,Breast Surgeon,mild
+57,61,M,"weakness,fatigue,pale skin,low hemoglobin",Iron Deficiency Anemia,Hematologist,moderate
+58,26,F,"frequent urination,lower abdominal pain,fever after sexual activity",Urinary Tract Infection,Urologist,moderate
+59,39,M,"upper right abdominal pain,fever,jaundice",Cholecystitis / Gallstones,General Surgeon,moderate
+60,72,F,"progressive shortness of breath,edema,orthopnea",Chronic Heart Failure,Cardiologist,severe
