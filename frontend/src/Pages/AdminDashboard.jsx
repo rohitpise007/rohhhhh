@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Context } from "../main";
-import { API_BASE_URL } from "../config";
+// Using direct backend URL instead of API_BASE_URL
 import {
   FaUsers,
   FaUserMd,
@@ -32,7 +32,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/admin-dashboard`, {
+        const response = await axios.get(`https://hospital-management-system-backend-dxt6.onrender.com/admin-dashboard`, {
           withCredentials: true,
         });
         setDashboardData(response.data.data);
@@ -40,7 +40,7 @@ const AdminDashboard = () => {
         console.error("Failed to load admin dashboard:", error);
         console.error("Error details:", error.response?.data);
         console.error("Error status:", error.response?.status);
-        console.error("Request URL:", `${API_BASE_URL}/admin-dashboard`);
+        console.error("Request URL:", `https://hospital-management-system-backend-dxt6.onrender.com/admin-dashboard`);
         setDashboardData(null);
       } finally {
         setLoading(false);
@@ -60,8 +60,8 @@ const AdminDashboard = () => {
   const handleInsuranceApproval = async (applicationId, action) => {
     try {
       const endpoint = action === 'approve'
-        ? `${API_BASE_URL}/insurance-applications/${applicationId}/approve`
-        : `${API_BASE_URL}/insurance-applications/${applicationId}/reject`;
+        ? `https://hospital-management-system-backend-dxt6.onrender.com/insurance-applications/${applicationId}/approve`
+        : `https://hospital-management-system-backend-dxt6.onrender.com/insurance-applications/${applicationId}/reject`;
 
       const response = await axios.post(endpoint, {}, {
         withCredentials: true,
@@ -84,7 +84,7 @@ const AdminDashboard = () => {
     if (!confirm('Are you sure you want to delete this doctor?')) return;
 
     try {
-      await axios.post(`${API_BASE_URL}/delete-doctor/${doctorId}`, {}, {
+      await axios.post(`https://hospital-management-system-backend-dxt6.onrender.com/delete-doctor/${doctorId}`, {}, {
         withCredentials: true,
       });
 

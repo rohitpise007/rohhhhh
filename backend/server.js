@@ -21,8 +21,10 @@ app.use(express.urlencoded({ extended: true }));
 // ---------- CORS ----------
 app.use(
   cors({
-    origin: 'http://localhost:5173', // Vite dev origin
-    credentials: true,
+    origin: true, // Allow all origins for development
+    credentials: true, // Allow credentials
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
   })
 );
 // ---------- Connect MongoDB ----------
@@ -30,6 +32,11 @@ const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/medapp';
 connectDB(MONGO_URI);
 
 // ---------- API ROUTES ----------
+
+// Root route for testing
+app.get('/', (req, res) => {
+  res.json({ message: 'Hospital Management System Backend is running!', status: 'OK' });
+});
 
 app.use(auth_router);
 app.use(patient_router);

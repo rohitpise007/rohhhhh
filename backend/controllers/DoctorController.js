@@ -7,9 +7,9 @@ const Report = require('../models/Report');
 
 const all_appointments = async (req, res) => {
   try {
-    const userId = req.userId;
-    const userAppointments = await Appointment.find({ user: userId }).populate("doctor");
-    return res.json({ appointments: userAppointments });
+    const doctorId = req.userId;
+    const doctorAppointments = await Appointment.find({ doctor: doctorId }).populate("user", "name email phone");
+    return res.json({ appointments: doctorAppointments });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

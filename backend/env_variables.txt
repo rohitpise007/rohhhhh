@@ -1,0 +1,17 @@
+Environment variables needed for the backend deployment on Render:
+
+1. MONGO_URI - Your MongoDB connection string
+   Example: mongodb+srv://username:password@cluster.mongodb.net/hospital_db
+
+2. JWT_SECRET - A secret key for JWT token signing
+   Example: your_super_secret_jwt_key_here_make_it_long_and_secure
+
+3. PORT (optional) - Port for the server, defaults to 5000
+
+4. NODE_ENV (optional) - Set to 'production' for production deployment
+
+To set these in Render:
+1. Go to your Render dashboard
+2. Select your backend service
+3. Go to Environment
+4. Add these environment variables

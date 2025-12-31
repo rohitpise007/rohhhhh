@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Context } from "../main";
-import { API_BASE_URL } from "../config";
+// Using direct backend URL instead of API_BASE_URL
 import {
   FaUser,
   FaCalendarAlt,
@@ -36,7 +36,9 @@ import {
 } from "react-icons/fa";
 
 const PatientDashboard = () => {
-  const { user } = useContext(Context);
+  const { user, isAuthenticated } = useContext(Context);
+
+  console.log("🏥 PatientDashboard rendering - isAuthenticated:", isAuthenticated, "user:", user);
   const [appointments, setAppointments] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const [reports, setReports] = useState([]);
@@ -57,10 +59,12 @@ const PatientDashboard = () => {
   const [uploadProgress, setUploadProgress] = useState(0);
 
   useEffect(() => {
+    console.log("🏥 PatientDashboard useEffect triggered, user:", user);
     const fetchDashboardData = async () => {
+      console.log("📊 Fetching dashboard data...");
       try {
         // Fetch appointments
-        const appointmentsRes = await axios.get(`${API_BASE_URL}/patient-appointments`, {
+        const appointmentsRes = await axios.get(`https://hospital-management-system-backend-dxt6.onrender.com/patient-appointments`, {
           withCredentials: true,
         });
 
@@ -76,35 +80,48 @@ const PatientDashboard = () => {
         setStats({ total, pending, completed, cancelled });
 
         // Fetch doctors
-        const doctorsRes = await axios.get(`${API_BASE_URL}/viewAll-doctors`);
-        setDoctors(doctorsRes.data.doctor || []);
+        console.log("🏥 Fetching doctors...");
+        try {
+          const doctorsRes = await axios.get(`https://hospital-management-system-backend-dxt6.onrender.com/viewAll-doctors`);
+          console.log("👨‍⚕️ Doctors response:", doctorsRes.data);
+          const doctorsData = doctorsRes.data.doctor || [];
+          console.log("👨‍⚕️ Setting doctors:", doctorsData.length, "doctors");
+          setDoctors(doctorsData);
+        } catch (doctorsError) {
+          console.error("❌ Failed to fetch doctors:", doctorsError);
+          console.error("Doctors error response:", doctorsError.response?.data);
+          // Set empty array as fallback
+          setDoctors([]);
+        }
 
         // Fetch reports
-        const reportsRes = await axios.get(`${API_BASE_URL}/patient-reports`, {
+        const reportsRes = await axios.get(`https://hospital-management-system-backend-dxt6.onrender.com/patient-reports`, {
           withCredentials: true,
         });
         setReports(reportsRes.data.reports || []);
 
         // Fetch insurance companies
-        const insuranceRes = await axios.get(`${API_BASE_URL}/insurance-companies`, {
+        const insuranceRes = await axios.get(`https://hospital-management-system-backend-dxt6.onrender.com/insurance-companies`, {
           withCredentials: true,
         });
         setInsuranceCompanies(insuranceRes.data.companies || []);
 
         // Fetch insurance applications
-        const insuranceAppsRes = await axios.get(`${API_BASE_URL}/patient-insurance-applications`, {
+        const insuranceAppsRes = await axios.get(`https://hospital-management-system-backend-dxt6.onrender.com/patient-insurance-applications`, {
           withCredentials: true,
         });
         setInsuranceApplications(insuranceAppsRes.data.applications || []);
 
         // Fetch bills
-        const billsRes = await axios.get(`${API_BASE_URL}/patient-bills`, {
+        const billsRes = await axios.get(`https://hospital-management-system-backend-dxt6.onrender.com/patient-bills`, {
           withCredentials: true,
         });
         setBills(billsRes.data.bills || []);
 
       } catch (err) {
-        console.error("Failed to load dashboard data:", err);
+        console.error("❌ Failed to load dashboard data:", err);
+        console.error("Error response:", err.response);
+        console.error("Error status:", err.response?.status);
       } finally {
         setLoading(false);
       }
@@ -154,7 +171,7 @@ const PatientDashboard = () => {
     }
 
     try {
-      const response = await axios.post(`${API_BASE_URL}/upload-report`, formData, {
+      const response = await axios.post(`https://hospital-management-system-backend-dxt6.onrender.com/upload-report`, formData, {
         withCredentials: true,
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -178,9 +195,9 @@ const PatientDashboard = () => {
 
   const handleInsuranceApplication = async (companyId) => {
     try {
-      await axios.post(`${API_BASE_URL}/apply-insurance`, {
+      await axios.post(`https://hospital-management-system-backend-dxt6.onrender.com/apply-insurance`, {
         insuranceCompanyId: companyId,
-        patientId: user._id
+        patientId: user.id
       }, {
         withCredentials: true,
         headers: { "Content-Type": "application/json" },
@@ -195,7 +212,7 @@ const PatientDashboard = () => {
 
   const handleBillPayment = async (billId) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/pay-bill`, {
+      const response = await axios.post(`https://hospital-management-system-backend-dxt6.onrender.com/pay-bill`, {
         billId: billId
       }, {
         withCredentials: true,
@@ -382,8 +399,29 @@ const PatientDashboard = () => {
 
       {activeTab === 'doctors' && (
         <div className="doctors-section">
-          <h2>Available Doctors {doctors.length}</h2>
-          <div className="doctors-grid-placeholder">Currently viewing doctors</div>
+          <h2>Available Doctors ({doctors.length})</h2>
+          {doctors.length === 0 ? (
+            <div className="no-doctors">
+              <p>No doctors available at the moment.</p>
+            </div>
+          ) : (
+            <div className="doctors-grid">
+              {doctors.map((doctor) => (
+                <div key={doctor._id} className="doctor-card">
+                  <div className="doctor-avatar">
+                    <FaUserMd size={40} />
+                  </div>
+                  <div className="doctor-info">
+                    <h3>Dr. {doctor.name}</h3>
+                    <p className="specialty">{doctor.specialty}</p>
+                    <p className="experience">{doctor.experience} years experience</p>
+                    <p className="contact">📧 {doctor.email}</p>
+                    {doctor.phone && <p className="contact">📞 {doctor.phone}</p>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
 
@@ -413,7 +451,7 @@ const PatientDashboard = () => {
                       <option value="">General Report (No specific doctor)</option>
                       {doctors.map((doctor) => (
                         <option key={doctor._id} value={doctor._id}>
-                          Dr. {doctor.name} - {doctor.specialization}
+                          Dr. {doctor.name} - {doctor.specialty}
                         </option>
                       ))}
                     </select>

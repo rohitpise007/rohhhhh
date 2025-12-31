@@ -4,19 +4,20 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 
 const AppointmentForm = () => {
-  const [doctorId, setDoctorId] = useS
-  tate("");
+  const [doctorId, setDoctorId] = useState("");
   const [disease, setDisease] = useState("");
   const [about, setAbout] = useState("");
-  const [doctor, setDoctors] = useState([]);
+  const [appointmentDate, setAppointmentDate] = useState("");
+  const [appointmentTime, setAppointmentTime] = useState("");
+  const [doctor, setDoctor] = useState([]);
 
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const { data } = await axios.get(`${API_BASE_URL}/viewAll-doctors`, {
+        const { data } = await axios.get(`https://hospital-management-system-backend-dxt6.onrender.com/viewAll-doctors`, {
           withCredentials: true,
         });
-        setDoctors(data.doctor);
+        setDoctor(data.doctor);
       } catch (error) {
         toast.error("Failed to load doctors");
       }
@@ -27,8 +28,8 @@ const AppointmentForm = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        `${API_BASE_URL}/Create-appointment`,
-        { doctor: doctorId, disease, about },
+        `https://hospital-management-system-backend-dxt6.onrender.com/Create-appointment`,
+        { doctor: doctorId, disease, about, appointmentDate, appointmentTime },
         {
           withCredentials: true,
           headers: { "Content-Type": "application/json" },
@@ -37,6 +38,8 @@ const AppointmentForm = () => {
       toast.success(data.message);
       setDoctorId("");
       setDisease("");
+      setAppointmentDate("");
+      setAppointmentTime("");
       setAbout("");
     } catch (error) {
       toast.error(error.response?.data?.message || "Error creating appointment");
@@ -67,6 +70,24 @@ const AppointmentForm = () => {
             placeholder="Disease"
             value={disease}
             onChange={(e) => setDisease(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label style={{ display: 'block', marginBottom: 8, color: '#666' }}>Preferred Date</label>
+          <input
+            type="date"
+            value={appointmentDate}
+            onChange={(e) => setAppointmentDate(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label style={{ display: 'block', marginBottom: 8, color: '#666' }}>Preferred Time</label>
+          <input
+            type="time"
+            value={appointmentTime}
+            onChange={(e) => setAppointmentTime(e.target.value)}
             required
           />
         </div>

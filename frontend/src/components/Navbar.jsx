@@ -5,7 +5,7 @@ import { FaUser, FaSignOutAlt, FaBars, FaCalendarAlt } from "react-icons/fa";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Context } from "../main";
-import { API_BASE_URL } from "../config";
+// import { API_BASE_URL } from "../config"; // Using direct URL instead
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
@@ -16,9 +16,9 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       // Determine logout endpoint based on user role
-      let logoutEndpoint = `${API_BASE_URL}/Plogout`;
+      let logoutEndpoint = `https://hospital-management-system-backend-dxt6.onrender.com/Plogout`;
       if (userRole === 'admin') {
-        logoutEndpoint = `${API_BASE_URL}/Alogout`; // We'll need to add this endpoint
+        logoutEndpoint = `https://hospital-management-system-backend-dxt6.onrender.com/Alogout`; // We'll need to add this endpoint
       }
 
       await axios.get(logoutEndpoint, {
@@ -26,12 +26,13 @@ const Navbar = () => {
       });
 
       toast.success("Logged out successfully");
-      setIsAuthenticated(false);
-      navigateTo("/");
     } catch (err) {
-      toast.error(err.response?.data?.message || "Logout failed");
-      // Even if logout request fails, clear local state
+      console.error("Logout error:", err);
+      toast.error("Logout completed (server error ignored)");
+    } finally {
+      // Always clear local state and localStorage
       setIsAuthenticated(false);
+      localStorage.removeItem('authState');
       navigateTo("/");
     }
   };

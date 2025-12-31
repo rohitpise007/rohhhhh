@@ -5,10 +5,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js",
+    "start": "node server.js",
     "train": "python python/train_model.py",
     "seed:insurance": "node scripts/seedInsurance.js",
     "seed:bills": "node scripts/seedBills.js",
-    "seed:admin": "node scripts/seedAdmin.js"
+    "seed:admin": "node scripts/seedAdmin.js",
+    "seed:patients": "node scripts/seedPatients.js"
   },
   "keywords": [],
   "author": "",

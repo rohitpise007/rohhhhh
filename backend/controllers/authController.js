@@ -55,8 +55,8 @@ const patient_login =async function(req, res){
 
     res.cookie("authorization", `Bearer ${token}`, {
       httpOnly: true,
-      secure: false, // Set to true in production with HTTPS
-      sameSite: 'lax',
+      secure: true, // Required for cross-domain
+      sameSite: 'none', // Required for cross-domain
       maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
     });
 
@@ -94,9 +94,9 @@ const patient_login =async function(req, res){
 
 const Plogout = (req, res) =>{
   res
-    .clearCookie("token", {
+    .clearCookie("authorization", {
       httpOnly: true,
-      sameSite: "None",
+      sameSite: "none",
       secure: true,
     })
     .status(200)
@@ -147,8 +147,8 @@ const Doctor_login = async function(req, res) {
 
     res.cookie("authorization", `Bearer ${token}`, {
       httpOnly: true,
-      secure: false, // Set to true in production with HTTPS
-      sameSite: 'lax',
+      secure: true, // Required for cross-domain
+      sameSite: 'none', // Required for cross-domain
       maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
     });
 
@@ -215,6 +215,23 @@ const Admin_login = async function(req, res) {
       return res.status(400).json({ message: "Email and password are required" });
     }
 
+    // Check if any admin exists, if not, create default admin
+    const adminCount = await Admin.countDocuments();
+    if (adminCount === 0) {
+      console.log('No admin users found, creating default admin...');
+      const hashedPassword = await bcrypt.hash('Admin123', 10);
+      const defaultAdmin = new Admin({
+        name: 'System Administrator',
+        email: 'Admin123@gmail.com',
+        password: hashedPassword,
+        role: 'admin',
+        permissions: ['manage_users', 'manage_doctors', 'manage_appointments', 'view_reports'],
+        isActive: true
+      });
+      await defaultAdmin.save();
+      console.log('Default admin created: Admin123@gmail.com / Admin123');
+    }
+
     const admin = await Admin.findOne({ email });
     if (!admin) {
       return res.status(401).json({ message: "Invalid credentials" });
@@ -237,8 +254,8 @@ const Admin_login = async function(req, res) {
 
     res.cookie("authorization", `Bearer ${token}`, {
       httpOnly: true,
-      secure: false, // Set to true in production with HTTPS
-      sameSite: 'lax',
+      secure: true, // Required for cross-domain
+      sameSite: 'none', // Required for cross-domain
       maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
     });
 
@@ -262,7 +279,7 @@ const Admin_logout = (req, res) => {
   res
     .clearCookie("authorization", {
       httpOnly: true,
-      sameSite: "None",
+      sameSite: "none",
       secure: true,
     })
     .status(200)

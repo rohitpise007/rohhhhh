@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { Context } from "../main";
 import { Link, useNavigate, Navigate } from "react-router-dom";
-import { API_BASE_URL } from "../config";
+// Using direct backend URL instead of API_BASE_URL
 import { FaUserShield, FaLock, FaEnvelope } from "react-icons/fa";
 
 const AdminLogin = () => {
@@ -20,14 +20,16 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post(
-        `${API_BASE_URL}/Alogin`,
-        { email, password },
-        {
-          withCredentials: true,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      const response = await axios({
+        method: 'POST',
+        url: `https://hospital-management-system-backend-dxt6.onrender.com/Alogin`,
+        data: { email, password },
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        withCredentials: true,
+      });
 
       toast.success(response.data.message || "Admin login successful!");
 
@@ -38,7 +40,7 @@ const AdminLogin = () => {
       };
 
       setIsAuthenticated(true);
-      setUser(userData);
+      setUser(userData); // This will trigger the updateUser function which handles userRole
       setEmail("");
       setPassword("");
 

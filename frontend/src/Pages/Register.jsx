@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { Context } from "../main";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { API_BASE_URL } from "../config";
+// Using direct backend URL instead of API_BASE_URL
 
 const Register = () => {
   const { isAuthenticated } = useContext(Context);
@@ -56,23 +56,27 @@ const Register = () => {
 
   const handleRegistration = async (e) => {
     e.preventDefault();
-    console.log("Registration form submitted");
+    console.log("📝 Registration form submitted");
+    console.log("👤 Role:", role);
+    console.log("📧 Email:", email);
 
-    // Temporarily disable validation for testing
-    console.log("Starting registration process");
+    if (!validateForm()) {
+      console.log("❌ Form validation failed");
+      return;
+    }
+
+    console.log("🚀 Starting registration process");
     setIsLoading(true);
-
-    console.log("Registration attempt:", { name, email, phone, password, role, specialty, experience });
 
     try {
       let endpoint = "";
       let payload = {};
 
       if (role === "patient") {
-        endpoint = `${API_BASE_URL}/Pregister`;
+        endpoint = `https://hospital-management-system-backend-dxt6.onrender.com/Pregister`;
         payload = { name: name.trim(), email: email.trim(), phone: phone.trim(), password };
       } else if (role === "doctor") {
-        endpoint = `${API_BASE_URL}/Dregister`;
+        endpoint = `https://hospital-management-system-backend-dxt6.onrender.com/Dregister`;
         payload = {
           name: name.trim(),
           email: email.trim(),
@@ -83,12 +87,25 @@ const Register = () => {
         };
       }
 
-      const response = await axios.post(endpoint, payload, {
-        withCredentials: true,
-        headers: { "Content-Type": "application/json" },
+      console.log("🌐 Making request to:", endpoint);
+      console.log("📦 Payload:", payload);
+      console.log("📦 Payload JSON:", JSON.stringify(payload));
+
+      const response = await axios({
+        method: 'POST',
+        url: endpoint,
+        data: payload,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        withCredentials: true, // Required for CORS and cookie handling
+        timeout: 10000, // 10 second timeout
       });
 
-      console.log("Registration success:", response.data);
+      console.log("✅ Registration response received:", response.status);
+      console.log("📦 Response data:", response.data);
+
       toast.success(response.data.message || "Registration successful! Please login.");
 
       // Reset form
@@ -102,14 +119,40 @@ const Register = () => {
 
       // Navigate to login page
       setTimeout(() => {
+        console.log("🔀 Redirecting to login page");
         navigateTo("/login");
       }, 1500);
     } catch (error) {
-      console.error("Registration error:", error);
-      const errorMessage = error.response?.data?.message || error.response?.data?.msg || "Registration failed";
+      console.error("❌ Registration error:", error);
+      console.error("📊 Error response:", error.response);
+      console.error("📊 Error status:", error.response?.status);
+      console.error("📊 Error data:", error.response?.data);
+      console.error("🌐 Error config:", error.config);
+      console.error("🔗 Request URL:", error.config?.url);
+
+      let errorMessage = "Registration failed. Please try again.";
+
+      if (error.response?.status === 400) {
+        errorMessage = error.response.data?.message || error.response.data?.msg || "Invalid registration data";
+      } else if (error.response?.status === 409) {
+        errorMessage = "User already exists with this email.";
+      } else if (error.response?.status === 404) {
+        errorMessage = "API endpoint not found. Please check backend deployment.";
+      } else if (error.response?.status === 500) {
+        errorMessage = "Server error. Please check backend configuration.";
+      } else if (error.code === 'NETWORK_ERROR' || error.message?.includes('Network Error')) {
+        errorMessage = "Cannot connect to server. Please check your internet connection.";
+      } else if (error.response?.data?.message) {
+        errorMessage = error.response.data.message;
+      } else if (!error.response) {
+        errorMessage = "Network error: Cannot reach the server.";
+      }
+
+      console.error("🚨 Final error message:", errorMessage);
       toast.error(errorMessage);
     } finally {
       setIsLoading(false);
+      console.log("🔄 Registration process completed");
     }
   };
 

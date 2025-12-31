@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { API_BASE_URL } from "../config";
+// import { API_BASE_URL } from "../config"; // Using direct URL instead
 import {
   FaCalendarAlt,
   FaFilePdf,
@@ -22,7 +22,7 @@ const DoctorAppointments = () => {
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        const res = await axios.get(`${API_BASE_URL}/Viewall-appointment`, {
+        const res = await axios.get(`https://hospital-management-system-backend-dxt6.onrender.com/Viewall-appointment`, {
           withCredentials: true,
         });
         setAppointments(res.data.appointments);
@@ -33,7 +33,7 @@ const DoctorAppointments = () => {
 
     const fetchReports = async () => {
       try {
-        const res = await axios.get(`${API_BASE_URL}/doctor-reports`, {
+        const res = await axios.get(`https://hospital-management-system-backend-dxt6.onrender.com/doctor-reports`, {
           withCredentials: true,
         });
         setReports(res.data.reports);

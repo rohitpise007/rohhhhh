@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { API_BASE_URL } from "../config";
+// import { API_BASE_URL } from "../config"; // Using direct URL instead
 import {
   FaCalendarCheck,
   FaUsers,
@@ -28,7 +28,7 @@ const WebsiteStats = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/website-stats`);
+        const response = await axios.get(`https://hospital-management-system-backend-dxt6.onrender.com/website-stats`);
         setStats(response.data);
       } catch (error) {
         console.error("Failed to fetch stats:", error);
