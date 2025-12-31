@@ -61,15 +61,15 @@ const App = () => {
           return;
         } catch (patientError) {
           // If patient endpoint fails, try admin endpoint
-        try {
-          const response = await axios.get(
-            `${API_BASE_URL}/Alogin`,
-            { withCredentials: true }
-          );
-          setIsAuthenticated(true);
-          setUser({ ...response.data.user, role: 'admin' });
-          return;
-        } catch (adminError) {
+          try {
+            const response = await axios.get(
+              `${API_BASE_URL}/Alogin`,
+              { withCredentials: true }
+            );
+            setIsAuthenticated(true);
+            setUser(response.data.user);
+            return;
+          } catch (adminError) {
             setIsAuthenticated(false);
             setUser({});
           }

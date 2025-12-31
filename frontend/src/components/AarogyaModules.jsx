@@ -22,17 +22,17 @@ const AarogyaModules = () => {
             <div className="module-card patient-appointment">
               <div className="module-icon">
                 <span className="module-emoji">👤</span>
-              </div>
+                  </div>
               <div className="module-content">
                 <h3 className="module-title">
                   Patient Appointment
-                </h3>
+                  </h3>
                 <p className="module-description">
                   Patient can book their appointments at Hospital Desk or Online through Hospital Portal or App for a consultant as per available slot, Make payments and get notification for booked appointment on their mobile.
-                </p>
-              </div>
-            </div>
-          </Link>
+                  </p>
+                  </div>
+                </div>
+              </Link>
 
           {/* OPD Module */}
           <Link to="/opd-module" className="module-card-link">
@@ -64,7 +64,7 @@ const AarogyaModules = () => {
                 Indoor Patient Management module helps to manage efficiently the Admission, Discharge, Transfer (A/D/T) process, Nursing Care, Patient provisional and final bills and Discharge Summary and many more.
               </p>
             </div>
-          </div>
+        </div>
 
           {/* Radiology Module */}
           <div className="module-card radiology-module">
@@ -74,7 +74,7 @@ const AarogyaModules = () => {
             <div className="module-content">
               <h3 className="module-title">
                 Radiology
-              </h3>
+          </h3>
               <p className="module-description">
                 This module covers sub-specialties such as X-Ray, Ultrasound, CT Scan, MRI etc. Managing entire Radiology process from Registration, Scheduling tests to generating Test reports.
               </p>

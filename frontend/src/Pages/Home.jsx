@@ -3,7 +3,7 @@ import Hero from "../components/Hero";
 import Biography from "../components/Biography";
 import WebsiteStats from "../components/WebsiteStats";
 import DoctorRole from "../components/DoctorRole";
-import AarogyaModules from "../components/AarogyaModules";
+import AarogyaModules from "../components/AarogyaModules"; 
 
 const Home = () => {
   return (
