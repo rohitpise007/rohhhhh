@@ -2,26 +2,22 @@ import axios from "axios";
 import React, { useEffect, useContext } from "react";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { API_BASE_URL } from "../config";
-import { Context } from "../main";
 
 const AppointmentForm = () => {
-  const { isAuthenticated, user } = useContext(Context);
-  const [doctorId, setDoctorId] = useState("");
+  const [doctorId, setDoctorId] = useS
+  tate("");
   const [disease, setDisease] = useState("");
   const [about, setAbout] = useState("");
-  const [appointmentDate, setAppointmentDate] = useState("");
-  const [appointmentTime, setAppointmentTime] = useState("");
   const [doctor, setDoctors] = useState([]);
 
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const { data } = await axios.get(`${API_BASE_URL}/viewAll-doctors`);
-        setDoctors(data.doctor || []);
+        const { data } = await axios.get(`${API_BASE_URL}/viewAll-doctors`, {
+          withCredentials: true,
+        });
+        setDoctors(data.doctor);
       } catch (error) {
-        console.error("Failed to load doctors:", error);
-        setDoctors([]);
         toast.error("Failed to load doctors");
       }
     };
@@ -29,39 +25,20 @@ const AppointmentForm = () => {
   }, []);
   const handleAppointment = async (e) => {
     e.preventDefault();
-    console.log("Appointment form submitted");
-    console.log("Form data:", { doctorId, disease, about, appointmentDate, appointmentTime });
-    console.log("Is authenticated:", isAuthenticated);
-
-    if (!isAuthenticated) {
-      toast.error("Please login to create an appointment");
-      return;
-    }
-
     try {
-      const payload = { doctor: doctorId, disease, about, appointmentDate, appointmentTime };
-
       const { data } = await axios.post(
         `${API_BASE_URL}/Create-appointment`,
-        payload,
+        { doctor: doctorId, disease, about },
         {
           withCredentials: true,
           headers: { "Content-Type": "application/json" },
         }
       );
-
       toast.success(data.message);
-
-      // Reset form
       setDoctorId("");
       setDisease("");
       setAbout("");
-      setAppointmentDate("");
-      setAppointmentTime("");
     } catch (error) {
-      console.error("Appointment creation error:", error);
-      console.error("Error response:", error.response?.data);
-      console.error("Error status:", error.response?.status);
       toast.error(error.response?.data?.message || "Error creating appointment");
     }
   };
@@ -85,24 +62,6 @@ const AppointmentForm = () => {
           </select>
         </div>
         <div>
-          <label style={{ display: 'block', marginBottom: 8, color: '#666' }}>Preferred Date</label>
-          <input
-            type="date"
-            value={appointmentDate}
-            onChange={(e) => setAppointmentDate(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label style={{ display: 'block', marginBottom: 8, color: '#666' }}>Preferred Time</label>
-          <input
-            type="time"
-            value={appointmentTime}
-            onChange={(e) => setAppointmentTime(e.target.value)}
-            required
-          />
-        </div>
-        <div>
           <input
             type="text"
             placeholder="Disease"
@@ -119,12 +78,7 @@ const AppointmentForm = () => {
             onChange={(e) => setAbout(e.target.value)}
           />
         </div>
-        <button
-          type="submit"
-          disabled={!doctorId || !appointmentDate || !appointmentTime || !disease}
-        >
-          Create Appointment
-        </button>
+        <button type="submit">Create Appointment</button>
       </form>
     </div>
   );
