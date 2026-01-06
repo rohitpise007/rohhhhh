@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; border-radius: 5px; }
+        button { padding: 10px 15px; margin: 5px; cursor: pointer; }
+        input { padding: 8px; margin: 5px; width: 200px; }
+        .result { margin: 10px 0; padding: 10px; background: #f5f5f5; white-space: pre-wrap; }
+        .success { border-color: #4CAF50; background-color: #e8f5e8; }
+        .error { border-color: #f44336; background-color: #ffebee; }
+    </style>
+</head>
+<body>
+    <h1>API Connection Test</h1>
+
+    <div class="test-section">
+        <h3>Test Root Endpoint</h3>
+        <button onclick="testRoot()">Test Root</button>
+        <div id="root-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>Patient Registration Test</h3>
+        <input type="text" id="reg-name" placeholder="Name" value="Test User"><br>
+        <input type="email" id="reg-email" placeholder="Email" value="test@example.com"><br>
+        <input type="tel" id="reg-phone" placeholder="Phone" value="1234567890"><br>
+        <input type="password" id="reg-password" placeholder="Password" value="password123"><br>
+        <button onclick="testPatientRegistration()">Register Patient</button>
+        <div id="reg-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>Patient Login Test</h3>
+        <input type="email" id="login-email" placeholder="Email" value="test@example.com"><br>
+        <input type="password" id="login-password" placeholder="Password" value="password123"><br>
+        <button onclick="testPatientLogin()">Login Patient</button>
+        <div id="login-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>Doctor Registration Test</h3>
+        <input type="text" id="doc-reg-name" placeholder="Name" value="Dr. Test"><br>
+        <input type="email" id="doc-reg-email" placeholder="Email" value="doctor@example.com"><br>
+        <input type="tel" id="doc-reg-phone" placeholder="Phone" value="1234567890"><br>
+        <input type="password" id="doc-reg-password" placeholder="Password" value="password123"><br>
+        <input type="text" id="doc-specialty" placeholder="Specialty" value="Cardiology"><br>
+        <input type="number" id="doc-experience" placeholder="Experience" value="5"><br>
+        <button onclick="testDoctorRegistration()">Register Doctor</button>
+        <div id="doc-reg-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>Doctor Login Test</h3>
+        <input type="email" id="doc-login-email" placeholder="Email" value="doctor@example.com"><br>
+        <input type="password" id="doc-login-password" placeholder="Password" value="password123"><br>
+        <button onclick="testDoctorLogin()">Login Doctor</button>
+        <div id="doc-login-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>Admin Login Test</h3>
+        <input type="email" id="admin-email" placeholder="Email" value="Admin123@gmail.com"><br>
+        <input type="password" id="admin-password" placeholder="Password" value="Admin123"><br>
+        <button onclick="testAdminLogin()">Login Admin</button>
+        <div id="admin-result" class="result"></div>
+    </div>
+
+    <script>
+        const BASE_URL = 'https://hospital-management-system-backend-dxt6.onrender.com';
+
+        function showResult(elementId, result, isSuccess = false) {
+            const element = document.getElementById(elementId);
+            element.textContent = JSON.stringify(result, null, 2);
+            element.className = 'result ' + (isSuccess ? 'success' : 'error');
+        }
+
+        async function testRoot() {
+            try {
+                const response = await fetch(BASE_URL);
+                const data = await response.json();
+                showResult('root-result', { status: response.status, data }, response.ok);
+            } catch (error) {
+                showResult('root-result', { error: error.message });
+            }
+        }
+
+        async function testPatientRegistration() {
+            const data = {
+                name: document.getElementById('reg-name').value,
+                email: document.getElementById('reg-email').value,
+                phone: document.getElementById('reg-phone').value,
+                password: document.getElementById('reg-password').value
+            };
+
+            try {
+                const response = await fetch(`${BASE_URL}/Pregister`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                showResult('reg-result', { status: response.status, data: result }, response.ok);
+            } catch (error) {
+                showResult('reg-result', { error: error.message });
+            }
+        }
+
+        async function testPatientLogin() {
+            const data = {
+                email: document.getElementById('login-email').value,
+                password: document.getElementById('login-password').value
+            };
+
+            try {
+                const response = await fetch(`${BASE_URL}/Plogin`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                showResult('login-result', { status: response.status, data: result }, response.ok);
+            } catch (error) {
+                showResult('login-result', { error: error.message });
+            }
+        }
+
+        async function testDoctorRegistration() {
+            const data = {
+                name: document.getElementById('doc-reg-name').value,
+                email: document.getElementById('doc-reg-email').value,
+                phone: document.getElementById('doc-reg-phone').value,
+                password: document.getElementById('doc-reg-password').value,
+                specialty: document.getElementById('doc-specialty').value,
+                experience: parseInt(document.getElementById('doc-experience').value)
+            };
+
+            try {
+                const response = await fetch(`${BASE_URL}/Dregister`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                showResult('doc-reg-result', { status: response.status, data: result }, response.ok);
+            } catch (error) {
+                showResult('doc-reg-result', { error: error.message });
+            }
+        }
+
+        async function testDoctorLogin() {
+            const data = {
+                email: document.getElementById('doc-login-email').value,
+                password: document.getElementById('doc-login-password').value
+            };
+
+            try {
+                const response = await fetch(`${BASE_URL}/Dlogin`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                showResult('doc-login-result', { status: response.status, data: result }, response.ok);
+            } catch (error) {
+                showResult('doc-login-result', { error: error.message });
+            }
+        }
+
+        async function testAdminLogin() {
+            const data = {
+                email: document.getElementById('admin-email').value,
+                password: document.getElementById('admin-password').value
+            };
+
+            try {
+                const response = await fetch(`${BASE_URL}/Alogin`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                showResult('admin-result', { status: response.status, data: result }, response.ok);
+            } catch (error) {
+                showResult('admin-result', { error: error.message });
+            }
+        }
+
+        // Auto-test root endpoint on page load
+        window.onload = function() {
+            setTimeout(testRoot, 1000);
+        };
+    </script>
+</body>
+</html>
